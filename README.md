@@ -1,2 +1,2 @@
 # scripts
-Random scripts that i made
+Random scripts that i made / have modified / use
