@@ -1,0 +1,27 @@
+#!/bin/bash
+
+AIRMON_NG=$(which airmon-ng)
+DEVICE=""
+
+if [ "$1" == "" ]
+then
+   echo "Usage: $0 <DEVICE>"
+   exit
+else
+   DEVICE="$1"
+fi
+
+if [ "$AIRMON_NG" == "" ]
+then
+   echo "[!] WARNING: airmon-ng is missing"
+   echo "[*] Trying to install it ..."
+   sudo dnf install -y aircrack-ng
+   AIRMON_NG=$(which airmon-ng)
+fi
+
+sudo $AIRMON_NG check kill
+sudo ifconfig $DEVICE down
+sudo iwconfig $DEVICE mode monitor
+sudo ifconfig $DEVICE up
+
+
