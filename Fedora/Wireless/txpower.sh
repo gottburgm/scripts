@@ -44,7 +44,8 @@ EOF
 power() {
 check_root
 check_iface
-if [ `iwconfig $IFACE|awk '/Access/{print $4}'` = "Not-Associated" ]; then
+test_tmp=$(iwconfig $IFACE|awk '/Access/{print $4}'
+if [ "$test_tmp" == "Not-Associated" ]; then
 ifconfig "$IFACE" down
 local CHECK=`echo $?`
     if [ $CHECK = 0 ]; then

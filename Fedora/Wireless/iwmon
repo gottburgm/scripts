@@ -24,4 +24,6 @@ sudo ifconfig $DEVICE down
 sudo iwconfig $DEVICE mode monitor
 sudo ifconfig $DEVICE up
 
-
+echo "[+] Boosting TX Power to 30"
+sudo iw $DEVICE set txpower fixed 3000
+sudo systemctl restart NetworkManager
